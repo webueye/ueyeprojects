@@ -29,35 +29,28 @@ public class SecurityFilter implements Filter {
 		HttpServletRequest request = ((HttpServletRequest)req);		
 		Account account = (Account) request.getSession().getAttribute(SessionCons.CURRENT_ACCOUNT);		
 		String url = request.getRequestURI();
-		String[] eq = {"/ueye","/ueye/login","/ueye/images/LoginBackgroundTile.gif","/ueye/images/body_bj.jpg"};
-		String[] contain = {"/ueye/images/","/ueye/css/","/ueye/js/","index.jsp"};
-		if(equalsOrContains(eq, contain, url, request.getMethod())){
+		
+		String context = request.getContextPath();
+		
+		String[] contain = {"/images/", "/css/", "/js/", "index.jsp", "/login"};
+		if(handleResource(contain, url, request.getMethod())){
 			chain.doFilter(req, resp);
 		}
 		else if((account != null) && (account.getUsername() != null) && (!"".equals(account.getUsername()))){
 			chain.doFilter(req, resp);
 		}
 		else{
-			((HttpServletResponse)resp).sendRedirect("/ueye/login");
+			((HttpServletResponse)resp).sendRedirect(context + "/login");
 		}	
 	}
 	
-	public boolean equalsOrContains(String[] eq, String[] contains, String url, String method){		
-		for(String str: eq){
-			if(str.equals(url)){
-				return true;
-			}
-		}			
+	public boolean handleResource(String[] contains, String url, String method){		
 		for(String str:contains){
 			if(url.contains(str) && !str.equals(url)){
 				return true;
 			}
 		}		
 		return false;
-	}
-	
-	public void p(Object value){
-		System.out.println("     security      "+value);
 	}
 	
 	public void destroy() {
