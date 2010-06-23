@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.ueye.common.common.Page;
-import net.ueye.common.constant.Entity;
 import net.ueye.common.dao.impl.BaseDaoImpl;
 import net.ueye.module.common.Config;
 import net.ueye.module.dao.AccountDao;
@@ -29,7 +28,6 @@ public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao{
 	 * @return
 	 */
 	public Account findUserByUsername(String username) {
-		//List<Account> list = findEntityListByEntityName(Entity.ACCOUNT, MethodParam.params("username"), MethodParam.values(username));
 		List<Account> list = findEntityListByHql(Config.get("AccountDao.findUserByUsername"), username);
 		if(list == null || list.size() == 0)
 			return null;
@@ -42,7 +40,7 @@ public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao{
 	 * @return List<Account> 用户列表
 	 */
 	public List<Account> getAccountList(Page page){
-		return findEntityListByEntityName(page, Entity.ACCOUNT);
+		return findEntityListByEntityName(page, getGenericClassName());
 	}
 	
 	/**
@@ -53,7 +51,6 @@ public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao{
 	@SuppressWarnings("unchecked")
 	public List<Role> getAccountRoles(final long accountId) {
 		List<Role> roles = new ArrayList<Role>();
-		//List<AccountRole> list = (List<AccountRole>) findDataListByClassName(Entity.ACCOUNT_ROLE, MethodParam.params("accountId"), MethodParam.values(accountId));
 		List<AccountRole> list = (List<AccountRole>) findDataList(Config.get("AccountDao.findAccountRoleByAccount"), accountId);
 		for(AccountRole ar: list){
 			roles.add(((Role)getHibernateTemplate().get(Role.class, ar.getRoleId())));
@@ -67,7 +64,6 @@ public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao{
 	 * @return
 	 */
 	public int countAccountByUsername(String username){
-		//return count(Entity.ACCOUNT, MethodParam.params("username"), MethodParam.values(username));
 		return countByHql(Config.get("AccountDao.countAccountByUsername"), username);
 	}
 	
@@ -77,7 +73,6 @@ public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao{
 	 * @return List<Account>
 	 */
 	public List<Account> findAccountListNoUserGroup(long userGroup){
-		//return findEntityListByHql("select new Account(acc.id,acc.username) from Account acc where acc.id not in (select ug.account from UserToGroup ug where ug.userGroup=?)",userGroup);
 		return findEntityListByHql(Config.get("AccountDao.findAccountListNoUserGroup"), userGroup);
 	}
 	
@@ -87,7 +82,6 @@ public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao{
 	 * @return List<Account>
 	 */
 	public List<Account> findAccountListByUserGroup(long userGroup){
-		//return findEntityListByHql("select new Account(acc.id,acc.username) from Account acc where acc.id in (select ug.account from UserToGroup ug where ug.userGroup=?)",userGroup);
 		return findEntityListByHql(Config.get("AccountDao.findAccountListByUserGroup"), userGroup);
 	}
 

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import net.ueye.common.common.MethodParam;
 import net.ueye.common.common.Page;
-import net.ueye.common.constant.Entity;
 import net.ueye.common.dao.impl.BaseDaoImpl;
 import net.ueye.module.dao.UserGroupDao;
 import net.ueye.module.entity.AccountRole;
@@ -33,7 +32,7 @@ public class UserGroupDaoImpl extends BaseDaoImpl<UserGroup> implements UserGrou
 	}
 	
 	public List<UserGroup> findUserGroup(Page page){
-		return findEntityListByEntityName(page, Entity.USER_GROUP);
+		return findEntityListByEntityName(page, getGenericClassName());
 	}
 
 	/**
@@ -51,7 +50,7 @@ public class UserGroupDaoImpl extends BaseDaoImpl<UserGroup> implements UserGrou
 	}
 	
 	public int countUserGroup(String userGroup){
-		return count(Entity.USER_GROUP, MethodParam.params("groupName"), MethodParam.values(userGroup));
+		return count(getGenericClassName(), MethodParam.params("groupName"), MethodParam.values(userGroup));
 	}
 
 }

@@ -3,7 +3,6 @@ package net.ueye.module.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import net.ueye.common.common.MethodParam;
-import net.ueye.common.constant.Entity;
 import net.ueye.common.dao.impl.BaseDaoImpl;
 import net.ueye.module.dao.UserToGroupDao;
 import net.ueye.module.entity.UserToGroup;
@@ -34,15 +33,15 @@ public class UserToGroupDaoImpl extends BaseDaoImpl<UserToGroup> implements User
 	 * @param account
 	 */
 	public void deleteUserToGroupByAccount(long accountId){
-		delete(Entity.USER_TO_GROUP, MethodParam.params("account"), MethodParam.values(accountId));
+		delete(getGenericClassName(), MethodParam.params("account"), MethodParam.values(accountId));
 	}
 	
 	public void deleteUserToGroupByUserGroup(long userGroupId){
-		delete(Entity.USER_TO_GROUP, MethodParam.params("userGroup"), MethodParam.values(userGroupId));
+		delete(getGenericClassName(), MethodParam.params("userGroup"), MethodParam.values(userGroupId));
 	}
 	
 	public void deleteAccountAndUserGroup(long accountId,long userGroupId){
-		delete(Entity.USER_TO_GROUP, MethodParam.params("account", "userGroup"), MethodParam.values(accountId, userGroupId));
+		delete(getGenericClassName(), MethodParam.params("account", "userGroup"), MethodParam.values(accountId, userGroupId));
 	}
 	
 }

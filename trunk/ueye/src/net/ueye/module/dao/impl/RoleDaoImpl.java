@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import net.ueye.common.common.MethodParam;
 import net.ueye.common.common.Page;
-import net.ueye.common.constant.Entity;
 import net.ueye.common.dao.impl.BaseDaoImpl;
 import net.ueye.module.dao.RoleDao;
 import net.ueye.module.entity.Role;
@@ -19,14 +18,14 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao{
 	 * 获取角色列表  [不带分页]
 	 */
 	public List<Role> findAllRoleList(){
-		return findEntityListByEntityName(Entity.ROLE);
+		return findEntityListByEntityName(getGenericClassName());
 	}
 	
 	/**
 	 * 获取角色列表 
 	 */
 	public List<Role> findAllRoleList(Page page){
-		return findEntityListByEntityName(page, Entity.ROLE);
+		return findEntityListByEntityName(page, getGenericClassName());
 	}
 
 	public List<Role> getEntityList(String hql, Page page) {
@@ -54,14 +53,6 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao{
 	public void addFunction(RoleFunction roleFunction){
 		this.getHibernateTemplate().save(roleFunction);
 	}
-	
-	public void deleteModule(long roleId) {
-		delete(Entity.ROLE_MODULE, MethodParam.params("roleId"), MethodParam.values(roleId));
-	}
-	
-	public void deleteFunction(long roleId) {
-		delete(Entity.ROLE_FUNCTION, MethodParam.params("roleId"), MethodParam.values(roleId));
-	}
 
 	@SuppressWarnings("unchecked")
 	public String getRoleModuleId(long roleId){
@@ -73,7 +64,7 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao{
 	}
 	
 	public int countRole(String roleName){
-		return count(Entity.ROLE, MethodParam.params("roleName"), MethodParam.values(roleName));
+		return count(getGenericClassName(), MethodParam.params("roleName"), MethodParam.values(roleName));
 	}
 		
 }
