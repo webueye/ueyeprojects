@@ -23,16 +23,7 @@ public class AccountServiceImpl extends BaseServiceImpl<Account> implements Acco
 	}
 	
 	public void insert(Account account){
-		//getAccountDao().insert(account);
-		Account first = new Account();
-		first.setUsername("first");
-		getAccountDao().insert(first);
-		
-		Account sec = new Account();
-		sec.setUsername("sec---------------------------------------------------------------------------------------------------------------------------------------------------");
-		getAccountDao().insert(sec);
-		
-		
+		getAccountDao().insert(account);
 	}
 	
 	/**
