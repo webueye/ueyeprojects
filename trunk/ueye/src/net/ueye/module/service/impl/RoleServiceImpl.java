@@ -72,7 +72,8 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	}
 	
 	public void deleteFunction(long roleId){
-		getRoleDao().deleteFunction(roleId);
+		//getRoleDao().deleteFunction(roleId);
+		getRoleFunctionDao().deleteFunction(roleId);
 	}
 	
 	public void addRoleFunction(RoleFunction roleFunction){
@@ -86,7 +87,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 	 */
 	public void addRoleModule(long roleId, String[] module){
 		StringBuffer sb = new StringBuffer();
-		getRoleDao().deleteModule(roleId);
+		getRoleModuleDao().deleteModule(roleId);
 		if(module != null){
 			for(int i = 0; i<module.length; i++){
 				if(i == module.length - 1){

@@ -8,6 +8,8 @@ import net.ueye.module.dao.AccountRoleDao;
 import net.ueye.module.dao.FunctionDao;
 import net.ueye.module.dao.ModuleDao;
 import net.ueye.module.dao.RoleDao;
+import net.ueye.module.dao.RoleFunctionDao;
+import net.ueye.module.dao.RoleModuleDao;
 import net.ueye.module.dao.UserGroupDao;
 import net.ueye.module.dao.UserToGroupDao;
 import net.ueye.module.service.BaseService;
@@ -28,6 +30,10 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
 	private RoleDao roleDao;
 	@Autowired
 	private ModuleDao moduleDao;
+	@Autowired
+	private RoleModuleDao roleModuleDao;
+	@Autowired
+	private RoleFunctionDao roleFunctionDao;
 		
 	public UserGroupDao getUserGroupDao() {
 		return userGroupDao;
@@ -83,6 +89,22 @@ public abstract class BaseServiceImpl<T> implements BaseService<T>{
 
 	public void setModuleDao(ModuleDao moduleDao) {
 		this.moduleDao = moduleDao;
+	}
+
+	public RoleModuleDao getRoleModuleDao() {
+		return roleModuleDao;
+	}
+
+	public void setRoleModuleDao(RoleModuleDao roleModuleDao) {
+		this.roleModuleDao = roleModuleDao;
+	}
+
+	public RoleFunctionDao getRoleFunctionDao() {
+		return roleFunctionDao;
+	}
+
+	public void setRoleFunctionDao(RoleFunctionDao roleFunctionDao) {
+		this.roleFunctionDao = roleFunctionDao;
 	}
 	
 }

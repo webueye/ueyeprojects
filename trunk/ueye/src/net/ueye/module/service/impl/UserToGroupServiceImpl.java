@@ -14,28 +14,20 @@ import net.ueye.module.service.UserToGroupService;
 @Service("userToGroupService")
 public class UserToGroupServiceImpl extends BaseServiceImpl<UserToGroup> implements UserToGroupService {
 
-	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+		getUserToGroupDao().delete(UserToGroup.class, id);
 	}
 
-	@Override
 	public void insert(UserToGroup entity) {
-		// TODO Auto-generated method stub
-		
+		getUserToGroupDao().insert(entity);
 	}
 
-	@Override
 	public void update(UserToGroup entity) {
-		// TODO Auto-generated method stub
-		
+		getUserToGroupDao().update(entity);
 	}
 
-	@Override
 	public UserToGroup get(Serializable id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getUserToGroupDao().get(UserToGroup.class, id);
 	}
 
 	
