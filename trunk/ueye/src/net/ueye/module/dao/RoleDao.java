@@ -8,6 +8,10 @@ import net.ueye.module.entity.Role;
 import net.ueye.module.entity.RoleFunction;
 import net.ueye.module.entity.RoleModule;
 
+/**
+ * @author rubys@vip.qq.com
+ * Oct 2, 2009
+ */
 public interface RoleDao extends BaseDao<Role> {
 	
 	List<Role> findAllRoleList();
@@ -30,10 +34,6 @@ public interface RoleDao extends BaseDao<Role> {
 	void addFunction(RoleFunction roleFunction);
 	
 	void addModule(RoleModule roleModule);
-	
-	void deleteModule(long roleId);
-	
-	void deleteFunction(long roleId);
 	
 	String getRoleModuleId(long roleId);
 	
