@@ -3,7 +3,10 @@ package net.ueye.module.dao;
 import net.ueye.common.dao.BaseDao;
 import net.ueye.module.entity.UserToGroup;
 
-
+/**
+ * @author rubys@vip.qq.com
+ * Aug 28, 2009
+ */
 public interface UserToGroupDao extends BaseDao<UserToGroup> {
 	
 	/**
