@@ -68,15 +68,15 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 	}
 
 	public void delete(Class<?> clazz, Serializable id) {
-		if(get(clazz,id)!=null)
-			this.getHibernateTemplate().delete(get(clazz,id));
+		if(get(clazz, id) != null)
+			this.getHibernateTemplate().delete(get(clazz, id));
 	}
 	
 	public void delete(final String className, final String[] params, final Object[] values){
 		getHibernateTemplate().execute(new HibernateCallback(){			
 			public Object doInHibernate(Session session)throws HibernateException, SQLException {
-				StringBuffer sb=new StringBuffer("DELETE FROM "+className+" className ");
-				Query query=createQuery(session, params, HQL.EQUAL, HQL.AND, values, sb);				
+				StringBuffer sb = new StringBuffer("DELETE FROM "+className+" className ");
+				Query query = createQuery(session, params, HQL.EQUAL, HQL.AND, values, sb);				
 				return query.executeUpdate();
 			}			
 		});	
@@ -85,8 +85,8 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 	public void delete(final String className, final String[] params, final Object[] values, final String andOrOr){
 		getHibernateTemplate().execute(new HibernateCallback(){			
 			public Object doInHibernate(Session session)throws HibernateException, SQLException {
-				StringBuffer sb=new StringBuffer("DELETE FROM "+className+" className ");
-				Query query=createQuery(session, params, HQL.EQUAL, andOrOr, values, sb);				
+				StringBuffer sb = new StringBuffer("DELETE FROM "+className+" className ");
+				Query query = createQuery(session, params, HQL.EQUAL, andOrOr, values, sb);				
 				return query.executeUpdate();
 			}			
 		});	
@@ -95,10 +95,10 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 	public void deleteByHQL(final String hql, final Object ... param) {
 		this.getHibernateTemplate().execute(new HibernateCallback(){			
 			public Object doInHibernate(Session session)throws HibernateException, SQLException {
-				Query query=session.createQuery(hql);
-				if(param!=null){
-					for(int i=0;i<param.length;i++){
-						query.setParameter(i,param[i]);
+				Query query = session.createQuery(hql);
+				if(param != null){
+					for(int i = 0; i < param.length; i++){
+						query.setParameter(i, param[i]);
 					}
 				}
 				return query.executeUpdate();
@@ -114,26 +114,26 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 	
 	@SuppressWarnings("unchecked")
 	public int countByHql(String hql, Object ...params){
-		List<Long> list=getHibernateTemplate().find(hql,params);
-		if(list.size()>0){
+		List<Long> list = getHibernateTemplate().find(hql, params);
+		if(list.size() > 0){
 			return list.get(0).intValue();
 		}
 		return 0;
 	}
 	
 	public int count(final String className){
-		return count(className,null,null,null,null);
+		return count(className, null, null, null, null);
 	}
 	
 	public int count(final String className, final String[] propName, final Object ...params){
-		return count(className, propName,HQL.EQUAL,HQL.AND, params);
+		return count(className, propName, HQL.EQUAL, HQL.AND, params);
 	}
 
 	public int count(final String className, final String[] propName, final String equOrNo, final String andOror, final Object[] params){
 		return (Integer) getHibernateTemplate().execute(new HibernateCallback(){
 			public Object doInHibernate(Session session)throws HibernateException, SQLException {
-				StringBuffer sb=new StringBuffer("SELECT count(*) FROM "+className+" className ");
-				Long count= (Long) createQuery(session, propName,equOrNo,andOror, params, sb).uniqueResult();
+				StringBuffer sb = new StringBuffer("SELECT count(*) FROM "+className+" className ");
+				Long count= (Long) createQuery(session, propName, equOrNo, andOror, params, sb).uniqueResult();
 				return count.intValue();
 			}			
 		});
@@ -155,20 +155,20 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 	
 	@SuppressWarnings("unchecked")
 	public List<T> findEntityListByHql(String hql, Object... params) {
-		return this.getHibernateTemplate().find(hql,params);
+		return this.getHibernateTemplate().find(hql, params);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<T> findEntityListByHql(final Page page, final String hql, final String[] params, final Object ... values){
 		return  (List<T>) getHibernateTemplate().execute(new HibernateCallback(){
 			public Object doInHibernate(Session session)throws HibernateException, SQLException {
-				Query query=session.createQuery(hql);
+				Query query = session.createQuery(hql);
 				query.setFirstResult(page.getBeginIndex()).setFetchSize(page.getPageSize()).setMaxResults(page.getPageSize());
-				if(params!=null&&values!=null){
-					if(params.length!=values.length){
+				if(params != null && values != null){
+					if(params.length != values.length){
 						throw new RuntimeException(Message.PARAMS_LENGTH_NOT_MATCH);
 					}
-					for(int i=0;i<params.length;i++)
+					for(int i = 0; i < params.length; i++)
 						query.setParameter(params[i], values[i]);
 				}
 				return query.list();
@@ -177,29 +177,29 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 	}
 		
 	public List<T> findEntityListByEntityName(final String className){
-		return findEntityListByEntityName(null,className,null,HQL.EQUAL,null,null);
+		return findEntityListByEntityName(null, className, null, HQL.EQUAL, null, null);
 	}
 	
 	public List<T> findEntityListByEntityName(final Page page, final String className){
-		return findEntityListByEntityName(page,className,null,HQL.EQUAL,null,null);
+		return findEntityListByEntityName(page, className, null, HQL.EQUAL, null, null);
 	}
 	
 	public List<T> findEntityListByEntityName(final String className, final String[] propName, final Object[] params){
-		return findEntityListByEntityName(null,className,propName,HQL.EQUAL,HQL.AND,params);
+		return findEntityListByEntityName(null, className, propName, HQL.EQUAL, HQL.AND, params);
 	}
 	
 	public List<T> findEntityListByEntityName(final Page page, final String className, final String[] propName, final Object[] params){
-		return findEntityListByEntityName(page,className,null,HQL.EQUAL,HQL.AND,null);
+		return findEntityListByEntityName(page, className, null, HQL.EQUAL, HQL.AND, null);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<T> findEntityListByEntityName(final Page page, final String className, final String[] propName, final String equOrNo, final String andOror,final Object[] params){
 		return (List<T>) getHibernateTemplate().execute(new HibernateCallback(){
 			public Object doInHibernate(Session session)throws HibernateException, SQLException {
-				StringBuffer sb=new StringBuffer("FROM "+className+" className ");				
-				Query query=createQuery(session, propName,equOrNo,andOror, params, sb);
-				if(page!=null){
-					page.setTotalCount(count(className,propName,equOrNo,andOror, params));
+				StringBuffer sb = new StringBuffer("FROM "+className+" className ");				
+				Query query = createQuery(session, propName, equOrNo, andOror, params, sb);
+				if(page != null){
+					page.setTotalCount(count(className, propName, equOrNo, andOror, params));
 					query.setFirstResult(page.getBeginIndex()).setMaxResults(page.getPageSize());
 				}
 				return query.list();
@@ -208,23 +208,23 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 	}
 	
 	private Query createQuery(Session session, String[] propName, String equOrNo, String andOror, Object[] params, StringBuffer sb){
-		if(propName!=null&&params!=null){
-			if(propName.length!=params.length)
+		if(propName != null && params != null){
+			if(propName.length != params.length)
 				throw new RuntimeException(Message.PARAMS_LENGTH_NOT_MATCH);
 			sb.append("WHERE ");
-			for(int i=0;i<propName.length;i++){
+			for(int i = 0; i < propName.length; i++){
 				sb.append("className.");
 				sb.append(propName[i]);
 				sb.append(equOrNo);
 				sb.append("? ");
-				if(i!=propName.length-1)
+				if(i != propName.length-1)
 					sb.append(andOror);
 				sb.append(" ");
 			}
 			sb.append(" ORDER BY className.created DESC");
-			Query query=session.createQuery(sb.toString());
-			for(int i=0;i<params.length;i++)
-				query.setParameter(i,params[i]);
+			Query query = session.createQuery(sb.toString());
+			for(int i = 0; i < params.length; i++)
+				query.setParameter(i, params[i]);
 			return query;			
 		}
 		else{
