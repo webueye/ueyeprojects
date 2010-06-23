@@ -87,8 +87,6 @@ public interface BaseDao<T> {
 	
 	List<T> findEntityListByEntityName(final Page page,final String className,final String[] propName,final String equOrNo,final String andOror,final Object[] params);
 	
-	
-	
-	//void execute(String hql);
+	String getGenericClassName();
 	
 }
