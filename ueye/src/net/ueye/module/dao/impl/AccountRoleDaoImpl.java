@@ -3,7 +3,6 @@ package net.ueye.module.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import net.ueye.common.common.MethodParam;
-import net.ueye.common.constant.Entity;
 import net.ueye.common.dao.impl.BaseDaoImpl;
 import net.ueye.module.dao.AccountRoleDao;
 import net.ueye.module.entity.AccountRole;
@@ -21,19 +20,19 @@ public class AccountRoleDaoImpl extends BaseDaoImpl<AccountRole> implements Acco
 	 * @param roleId
 	 */
 	public void insertAccountRole(long accountId, long roleId[]){
-		if(roleId!=null){
-			for(long role:roleId){
+		if(roleId != null){
+			for(long role: roleId){
 				insert(new AccountRole(accountId, role));
 			}
 		}
 	}
 	
 	public void deleteAccountRoleByRole(long roleId){
-		delete(Entity.ACCOUNT_ROLE, MethodParam.params("roleId"), MethodParam.values(roleId));
+		delete(getGenericClassName(), MethodParam.params("roleId"), MethodParam.values(roleId));
 	}
 	
 	public void deleteAccountRoleByUserGroup(long userGroup){
-		delete(Entity.ACCOUNT_ROLE, MethodParam.params("userGroupId"), MethodParam.values(userGroup));
+		delete(getGenericClassName(), MethodParam.params("userGroupId"), MethodParam.values(userGroup));
 	}
 	
 	/**
@@ -41,7 +40,7 @@ public class AccountRoleDaoImpl extends BaseDaoImpl<AccountRole> implements Acco
 	 * @param accountId
 	 */
 	public void deleteAccountRoleByAccount(long accountId){
-		delete(Entity.ACCOUNT_ROLE, MethodParam.params("accountId"), MethodParam.values(accountId));
+		delete(getGenericClassName(), MethodParam.params("accountId"), MethodParam.values(accountId));
 	}
 	
 	/**
@@ -50,11 +49,11 @@ public class AccountRoleDaoImpl extends BaseDaoImpl<AccountRole> implements Acco
 	 * @param roleId
 	 */
 	public void deleteAccountRole(long accountId, long roleId){
-		delete(Entity.ACCOUNT_ROLE,MethodParam.params("accountId","roleId"),MethodParam.values(accountId,roleId));
+		delete(getGenericClassName(),MethodParam.params("accountId","roleId"), MethodParam.values(accountId, roleId));
 	}
 	
-	public void deleteByRoleAndUserGroup(long roleId,long userGroupId){
-		delete(Entity.ACCOUNT_ROLE, MethodParam.params("roleId", "userGroupId"), MethodParam.values(roleId, userGroupId));
+	public void deleteByRoleAndUserGroup(long roleId, long userGroupId){
+		delete(getGenericClassName(), MethodParam.params("roleId", "userGroupId"), MethodParam.values(roleId, userGroupId));
 	}
 	
 }

@@ -24,7 +24,6 @@ public class ModuleDaoImpl extends BaseDaoImpl<Module> implements ModuleDao {
 	 * @return Module
 	 */
 	public Module getRootModule(){
-		//List<Module> moduleList = findEntityListByHql("FROM Module m WHERE m.parent=null");
 		List<Module> moduleList = findEntityListByHql(Config.get("ModuleDao.getRootModule"));
 		if(moduleList.size() > 0)
 			return moduleList.get(0);
@@ -32,7 +31,6 @@ public class ModuleDaoImpl extends BaseDaoImpl<Module> implements ModuleDao {
 	}
 	
 	public List<Module> findModuleByRole(String moduleIdList, long parentModule){
-		//String hql = "FROM Module m WHERE m.parent.id=? AND m.id in("+ moduleIdList +") ORDER BY m.orderValue";
 		List<Module> moduleList = findEntityListByHql(Config.get("ModuleDao.findModuleByParentAndModules"), parentModule, moduleIdList);
 		deepQueryModuleByHql(moduleList, Config.get("ModuleDao.findModuleByParentAndModuleIds"), false);
 		return moduleList;
@@ -54,10 +52,8 @@ public class ModuleDaoImpl extends BaseDaoImpl<Module> implements ModuleDao {
 		Module module = getRootModule();
 		if(module != null){
 			List<Module> moduleList = null;
-			//String hql="FROM Module m WHERE m.parent.id = ? AND m.id in("+ roleModules +") and m.parent.leaf = false ORDER BY m.orderValue";
 			String hql = Config.get("ModuleDao.findAllModuleNotLeafListByModules");
 			if(isAdmin){
-				//hql = "FROM Module m WHERE m.parent.id = ? AND m.parent.leaf=false  ORDER BY m.orderValue";
 				hql = Config.get("ModuleDao.findAllModuleNotLeafList");
 			}
 			moduleList = findEntityListByHql(hql, module.getId());
@@ -93,12 +89,10 @@ public class ModuleDaoImpl extends BaseDaoImpl<Module> implements ModuleDao {
 	}
 	
 	public int countRootModule(){
-		//return countByHql("SELECT count(*) FROM Module module WHERE module.parent = null");
 		return countByHql(Config.get("ModuleDao.countRootModule"));
 	}
 
 	public List<Module> findModuleByParent(long parentId) {
-		//return findEntityListByHql("FROM Module module WHERE module.parent.id=? ORDER BY module.orderValue", parentId);
 		return findEntityListByHql(Config.get("ModuleDao.findModuleByParent"), parentId);
 	}
 
