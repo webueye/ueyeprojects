@@ -1,6 +1,8 @@
 package net.ueye.common.dao.impl;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -231,12 +233,15 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 		}
 	}
 	
-	
-	
-	
-//	public void execute(String hql) {
-//		this.getHibernateTemplate().bulkUpdate(hql);
-//	}
+	@SuppressWarnings("unchecked")
+	public String getGenericClassName(){
+		Type type = this.getClass().getGenericSuperclass();
+		Type[] types = ((ParameterizedType)type).getActualTypeArguments();
+		if(types != null && types.length > 0){
+			return ((Class)types[0]).getSimpleName();
+		}
+		throw new RuntimeException("The BaseDaoImpl :"+ Message.GENERIC_CLASS_NOT_GET);
+	}
 	
 	
 	@Autowired
