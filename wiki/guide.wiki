@@ -1,11 +1,11 @@
 #summary One-sentence summary of this page.
 
-= Introduction =
+= 介绍 =
 
 基于SSH的动态树+部分权限管理
 
 
-= Details =
+= 详细说明 =
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
