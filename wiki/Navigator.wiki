@@ -1,6 +1,6 @@
 #summary Navigator
 
-关于 ueye
+［关于 ueye］
 
 操作指南
 
