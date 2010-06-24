@@ -6,6 +6,7 @@
 = 详细说明 =
 
 数据库操作的两种方式：
+
 一、
   * 建立数据库
   * 修改 resource 目录下的配置文件 *applicationContext.xml* 
