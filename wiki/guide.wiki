@@ -18,4 +18,5 @@
   * 还原后修改 resource 目录下的配置文件 *applicationContext.xml* 
   * 候改为相应的数据库名以及登陆该数据库的用户名和密码
 
-*<font color="red">如有问题请到 [http://code.google.com/p/ueyeprojects/issues/list  Issues] 提出，谢谢配合。</font>*
+*<font color="red">
+如有问题请到 [http://code.google.com/p/ueyeprojects/issues/list  Issues] 提出或发邮件：ofbizs@gmail.com ，谢谢配合。 </font>*
