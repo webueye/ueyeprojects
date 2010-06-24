@@ -1,5 +1,4 @@
 #summary The user guide
-#labels Featured,Phase-Requirements,Phase-Design
 = 说明 =
 
 基于SSH的动态树+部分权限管理
