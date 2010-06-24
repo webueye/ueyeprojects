@@ -8,14 +8,14 @@
 
 常见问题解答
 
-WikiSyntax is identified and linked automatically
+guide is identified and linked automatically
 
-Wikipage is not identified, so if you have a page named [Wikipage] you
+Wikipage is not identified, so if you have a page named [guide] you
 need to link it explicitly.
 
 If the WikiSyntax page is actually about reindeers, you can provide a
 description, so that people know you're actually linking to a page on
-[WikiSyntax reindeer flotillas].
+[guide reindeer flotillas].
 
 If you want to mention !WikiSyntax without it being autolinked, use an
 exclamation mark to prevent linking.
