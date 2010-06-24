@@ -25,7 +25,7 @@ public class ModuleAction extends BaseAction{
 	@SuppressWarnings("unchecked")
 	public String index() {
 		List<Module> moduleList = (List<Module>)ActionContext.getContext().getSession().get(SessionCons.MODULE_LIST);
-		if(moduleList == null){
+		if(moduleList == null || (moduleList !=null && moduleList.size() == 0)){
 			Module rootModule = getModuleService().getRootModule();
 			if(isAdministrator()){
 				if(rootModule != null){
