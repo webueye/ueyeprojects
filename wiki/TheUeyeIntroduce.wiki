@@ -11,4 +11,4 @@
 </font>*
 
 *<font color="red">
-如有问题请到 [http://code.google.com/p/ueyeprojects/issues/list  Issues] 提出或发邮件：ofbizs@gmail.com ，谢谢配合。 </font>*
+如有问题请到 [http://code.google.com/p/ueyeprojects/issues/list  Issues] 提出或发邮件：[mailto ofbizs@gmail.com] ，谢谢配合。 </font>*
