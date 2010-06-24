@@ -40,11 +40,13 @@ public class LoginAction extends BaseAction{
 				return "login";
 			}
 			ActionContext.getContext().getSession().put(SessionCons.CURRENT_ACCOUNT, account);
-			List<Module> moduleList;
+			List<Module> moduleList = null;
 			if(isAdministrator()){
 				Module rootModule = getModuleService().getRootModule();
-				moduleList = getModuleService().findModuleByParent(rootModule.getId());	
-				getModuleService().deepQueryModuleByParent(moduleList);
+				if(rootModule != null){
+					moduleList = getModuleService().findModuleByParent(rootModule.getId());	
+					getModuleService().deepQueryModuleByParent(moduleList);
+				}
 			}
 			else{
 				List<Role> accountRoleList = getAccountService().getAccountAllRoles(account.getId());			
