@@ -7,7 +7,8 @@
 
 = 详细说明 =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
+数据库
+  * 建立数据库
+  * 修改 resource 目录下的配置文件 *applicationContext.xml* 
+  * 候改为相应的数据库名以及登陆该数据库的用户名和密码
   * Automatic links to other wiki pages
