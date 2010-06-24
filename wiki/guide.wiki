@@ -17,3 +17,5 @@
   * demo.sql 中含有数据库的生成脚本以及初始数据
   * 还原后修改 resource 目录下的配置文件 *applicationContext.xml* 
   * 候改为相应的数据库名以及登陆该数据库的用户名和密码
+
+#sidebar TableOfContents 
