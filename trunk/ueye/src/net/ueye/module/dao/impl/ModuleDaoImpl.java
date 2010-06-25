@@ -31,8 +31,11 @@ public class ModuleDaoImpl extends BaseDaoImpl<Module> implements ModuleDao {
 	}
 	
 	public List<Module> findModuleByRole(String moduleIdList, long parentModule){
-		List<Module> moduleList = findEntityListByHql(Config.get("ModuleDao.findModuleByParentAndModules"), parentModule, moduleIdList);
-		deepQueryModuleByHql(moduleList, Config.get("ModuleDao.findModuleByParentAndModuleIds"), false);
+		String hql = "FROM Module m WHERE m.parent.id = ? and m.id in("+ moduleIdList +") ORDER BY m.orderValue";
+		//List<Module> moduleList = findEntityListByHql(Config.get("ModuleDao.findModuleByParentAndModules"), parentModule, moduleIdList);
+		//deepQueryModuleByHql(moduleList, Config.get("ModuleDao.findModuleByParentAndModuleIds"), false);
+		List<Module> moduleList = findEntityListByHql(hql, parentModule);
+		deepQueryModuleByHql(moduleList, hql, false);
 		return moduleList;
 	}
 	
