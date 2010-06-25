@@ -25,6 +25,7 @@
    # 第一次添加的模块为根目录，里面的数据没有要求，是不显示的
    # 第二次添加的模块才会显示在列表中
   * 手动添加模块的URL ： ip:port/contextPath/module
+  * mysql 驱动版本 5.0+，太低会出现问题
 
 *<font color="red">
 如有问题请到 [http://code.google.com/p/ueyeprojects/issues/list  Issues] 提出或发邮件：ofbizs@gmail.com ，谢谢配合。 </font>*
