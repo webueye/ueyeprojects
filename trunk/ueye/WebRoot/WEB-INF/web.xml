@@ -41,7 +41,7 @@
 	</session-config>
 	
 	<error-page>
-		<exception-type>net.ueye.module.exception.NoAssignRoleException</exception-type>
+		<exception-type>net.ueye.module.exception.NotAssignRoleException</exception-type>
 		<location>/WEB-INF/common/error.jsp</location>
 	</error-page>
 	
