@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	
+	
+	<!-- ***************************   JBPM     ************************* 
+	<bean id="springHelper" class="org.jbpm.pvm.internal.processengine.SpringHelper" />
+  	<bean id="processEngine" factory-bean="springHelper" factory-method="createProcessEngine" />
+  	 -->
+  	 
+  	 
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/ueye?useUnicode=true&amp;characterEncoding=UTF-8"/>
+		<property name="username" value="root"></property>
+		<property name="password" value="admin"></property>
+	</bean>	
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<list>
+				<value>net.ueye.module.entity</value>
+				<value>net.ueye.cms.entity</value>
+			</list>
+		</property>
+		
+		<!-- 
+		<property name="configLocation" value="classpath:jbpm.hibernate.cfg.xml" />
+		<property name="mappingJarLocations">
+			<list>
+				<value>classpath:jbpm.jar</value>
+			</list>
+		</property>
+		 -->
+	</bean>
+	
+	
+	<!--  
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	</bean>
+	-->
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<context:annotation-config />
+	<context:component-scan base-package="net.ueye" />
+	
+	<!-- 事务管理  -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory" />
+    	<property name="dataSource" ref="dataSource"/>
+  	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	
+	
+		
+</beans>
