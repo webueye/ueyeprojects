@@ -19,10 +19,11 @@ import net.ueye.module.entity.Account;
  * 2009-10-28
  */
 public class SecurityFilter implements Filter {
-
+	
+	private String fileResource;
 
 	public void init(FilterConfig filterConfig) throws ServletException {
-
+		this.fileResource = filterConfig.getInitParameter("fileResource");
 	}
 
 	public void doFilter(ServletRequest req, ServletResponse resp,FilterChain chain) throws IOException, ServletException {
@@ -32,8 +33,13 @@ public class SecurityFilter implements Filter {
 		
 		String context = request.getContextPath();
 		
-		String[] contain = {"", "/images/", "/css/", "/js/", "index.jsp", "/login"};
-		if(handleResource(contain, url, request.getMethod())){
+		String[] resources = null;
+		
+		if(fileResource != null){
+			resources = fileResource.split(",");
+		}
+		
+		if(handleResource(resources, context, url, request.getMethod())){
 			chain.doFilter(req, resp);
 		}
 		else if((account != null) && (account.getUsername() != null) && (!"".equals(account.getUsername()))){
@@ -44,17 +50,23 @@ public class SecurityFilter implements Filter {
 		}	
 	}
 	
-	public boolean handleResource(String[] contains, String url, String method){		
-		for(String str: contains){
-			if(url.contains(str) && !str.equals(url)){
+	public boolean handleResource(String[] resources, String context, String url, String method){
+		if(resources == null){
+			return true;
+		}
+		for(String resource: resources){
+			if(resource != null){
+				resource = resource.trim();
+			}
+			if(url != null && url.contains(context+resource) && !"".equals(resource)){
 				return true;
 			}
-		}		
+		}
 		return false;
 	}
 	
 	public void destroy() {
-
+		this.fileResource = null;
 	}
-
+	
 }
