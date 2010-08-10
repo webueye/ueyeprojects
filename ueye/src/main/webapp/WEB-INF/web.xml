@@ -49,6 +49,17 @@
 		<location>/WEB-INF/common/error.jsp</location>
 	</error-page>
 	
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/common/500.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/common/404.jsp</location>
+	</error-page>
+	
+	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
