@@ -5,6 +5,7 @@
 
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/common.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/website.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/jquery.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/ajaxfileupload.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
