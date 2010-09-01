@@ -221,14 +221,14 @@ public abstract class BaseDaoImpl<T>  implements BaseDao<T> {
 					sb.append(andOror);
 				sb.append(" ");
 			}
-			sb.append(" ORDER BY className.created DESC");
+			sb.append(" ORDER BY className.id DESC");
 			Query query = session.createQuery(sb.toString());
 			for(int i = 0; i < params.length; i++)
 				query.setParameter(i, params[i]);
 			return query;			
 		}
 		else{
-			sb.append(" ORDER BY className.created DESC");
+			sb.append(" ORDER BY className.id DESC");
 			return session.createQuery(sb.toString());
 		}
 	}
