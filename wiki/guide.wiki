@@ -13,10 +13,6 @@
   * 修改 resource 目录下的配置文件 *applicationContext.xml* 
   * 候改为相应的数据库名以及登陆该数据库的用户名和密码
   * 导入 data.sql 中的数据
-二、
-  * demo.sql 中含有数据库的生成脚本以及初始数据
-  * 还原后修改 resource 目录下的配置文件 *applicationContext.xml* 
-  * 候改为相应的数据库名以及登陆该数据库的用户名和密码
 
 <font color="red">*注：*</font>
   * 如果在没用脚本导入数据情况下
@@ -25,7 +21,10 @@
    # 第一次添加的模块为根目录，里面的数据没有要求，是不显示的
    # 第二次添加的模块才会显示在列表中
   * 手动添加模块的URL ： ip:port/contextPath/module
-  * <font color="red">数据库驱动现已传上</font>
+
+二、
+  * JDK 要求1.6，如是1.5环境，则需要把 common-dbcp1.4（1.6的） 换成1.3的（1.4-1.5）
+  * tomcat 要求是 6.0 的
 
 *<font color="red">
 如有问题请到 [http://code.google.com/p/ueyeprojects/issues/list  Issues] 提出或发邮件：ofbizs@gmail.com ，谢谢配合。 </font>*
